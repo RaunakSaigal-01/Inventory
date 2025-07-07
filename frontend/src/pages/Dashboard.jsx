@@ -14,7 +14,7 @@ import RevenueByCategoryChart from "../components/Dashboard/RevenueByCategoryCha
 import SalesOverTimeChart from "../components/Dashboard/SalesOverTimeChart.jsx";
 import LowStockItems from "../components/Dashboard/LowStockItems.jsx";
 import "./dashboard.css";
-
+const url="https://inventory-2edn.onrender.com"
 const Dashboard = () => {
   const [inventory, setInventory] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -30,7 +30,7 @@ fetchLowStockItems();
 
   const fetchInventory = async () => {
     try {
-      const response = await axios.get("/api/inventory");
+      const response = await axios.get(`${url}/api/inventory`);
 setInventory(response.data);
     } catch (error) {
 console.error("Error fetching inventory:", error);
@@ -39,7 +39,7 @@ console.error("Error fetching inventory:", error);
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("/api/orders");
+      const response = await axios.get(`${url}/api/orders`);
 setOrders(response.data);
     } catch (error) {
 console.error("Error fetching orders:", error);
@@ -48,7 +48,7 @@ console.error("Error fetching orders:", error);
 
   const fetchSuppliers = async () => {
     try {
-      const response = await axios.get("/api/suppliers");
+      const response = await axios.get(`${url}/api/suppliers`);
 setSuppliers(response.data);
     } catch (error) {
 console.error("Error fetching suppliers:", error);
@@ -57,7 +57,7 @@ console.error("Error fetching suppliers:", error);
 
   const fetchLowStockItems = async () => {
     try {
-      const response = await axios.get("/api/inventory/low-stock", {
+      const response = await axios.get(`${url}/api/inventory/low-stock`, {
         headers: "Authorization: Bearer " + localStorage.getItem("token"),
       });
 setLowStockItems(response.data);
