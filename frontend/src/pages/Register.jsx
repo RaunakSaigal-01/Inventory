@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import Registerimg from "../assets/warehouses.avif";
 import "./register.css";
-
+const url="https://inventory-2edn.onrender.com"
 const Register = () => {
   const [formData, setFormData] = useState({
 fullname: "",
@@ -41,7 +41,7 @@ form.append("password", formData.password);
     if (avatar) form.append("avatar", avatar);
 
     try {
-      const { data } = await axios.post(`https://inventory-2edn.onrender.com/api/register`, form, {
+      const { data } = await axios.post(`${url}/api/register`, form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 toast.success(data.message);
@@ -54,7 +54,7 @@ toast.error(error.response?.data?.message || "Error occurred during registration
   const handleOtpSubmit = async (e) => {
 e.preventDefault();
     try {
-      const { data } = await axios.post("/api/verify-otp", {
+      const { data } = await axios.post(`${url}/api/verify-otp`, {
         email: formData.email,
 otp,
       });
