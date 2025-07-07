@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const url="https://inventory-2edn.onrender.com"
 const NewOrder = ({ onOrderAdded }) => {
   const [order, setOrder] = useState({
     productName: "",
@@ -16,14 +16,13 @@ const NewOrder = ({ onOrderAdded }) => {
   });
   const [inventory, setInventory] = useState([]);
   const navigate = useNavigate();
-
   useEffect(() => {
     fetchInventory();
   }, []);
 
   const fetchInventory = async () => {
     try {
-      const response = await axios.get("/api/inventory");
+      const response = await axios.get(`${url}/api/inventory`);
       setInventory(response.data);
     } catch (error) {
       console.error("Error fetching inventory:", error);
@@ -67,7 +66,7 @@ const NewOrder = ({ onOrderAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/orders", order, {
+      const response = await axios.post(`${url}/api/orders`, order, {
         headers: {
           "Content-Type": "application/json",
         },
