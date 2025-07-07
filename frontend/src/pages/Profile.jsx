@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./profile.css";
-
+const url="https://inventory-2edn.onrender.com"
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [avatar, setAvatar] = useState(null);
@@ -18,7 +18,7 @@ useEffect(() => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const { data } = await axios.get("/api/me", {
+          const { data } = await axios.get(`${url}/api/me`, {
             headers: { Authorization: `Bearer ${token}` },
           });
 setUser(data.user);
@@ -28,7 +28,7 @@ fullname: data.user.fullname,
             password: "",
           });
           if (data.user.role === "admin") {
-            const employeesData = await axios.get("/api/employees", {
+            const employeesData = await axios.get(`${url}/api/employees`, {
               headers: { Authorization: `Bearer ${token}` },
             });
 setEmployees(employeesData.data);
@@ -53,7 +53,7 @@ setMessage("Please select an avatar to upload");
     const form = new FormData();
 form.append("avatar", avatar);
     try {
-      const { data } = await axios.put("/api/avatar", form, {
+      const { data } = await axios.put(`${url}/api/avatar`, form, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -70,7 +70,7 @@ setMessage(error.response?.data?.message || "Failed to update avatar");
   const handleLogout = async () => {
     try {
       await axios.post(
-        "/api/logout",
+        `${url}/api/logout`,
         {},
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -93,7 +93,7 @@ setFormData({ ...formData, [e.target.name]: e.target.value });
 e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const { data } = await axios.put("/api/profile", formData, {
+      const { data } = await axios.put(`${url}/api/profile`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 setUser(data.user);
