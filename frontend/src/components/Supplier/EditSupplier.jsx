@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+const url="https://inventory-2edn.onrender.com"
 const EditSupplier = ({ supplier, onSupplierEdited, onClose }) => {
   const [supplierData, setSupplierData] = useState({
     _id: "",
@@ -36,7 +36,7 @@ const EditSupplier = ({ supplier, onSupplierEdited, onClose }) => {
 
     try {
       const response = await axios.put(
-        `/api/suppliers/${supplierData._id}`,
+        `${url}/api/suppliers/${supplierData._id}`,
         formData,
         {
           headers: {
