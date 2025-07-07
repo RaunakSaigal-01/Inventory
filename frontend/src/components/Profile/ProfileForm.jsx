@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+const url="https://inventory-2edn.onrender.com"
 const ProfileForm = ({ user, setUser, setMessage }) => {
   const [formData, setFormData] = useState({
     fullname: user.fullname,
@@ -16,7 +16,7 @@ const ProfileForm = ({ user, setUser, setMessage }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const { data } = await axios.put("/api/profile", formData, {
+      const { data } = await axios.put(`${url}/api/profile`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(data.user);
