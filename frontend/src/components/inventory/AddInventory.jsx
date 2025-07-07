@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaSave, FaTimes } from "react-icons/fa";
-
+const url="https://inventory-2edn.onrender.com"
 const AddInventory = ({ fetchInventory }) => {
   const [inventory, setInventory] = useState({
     image: null,
@@ -23,7 +23,7 @@ const AddInventory = ({ fetchInventory }) => {
   useEffect(() => {
     const fetchSuppliers = async () => {
       try {
-        const response = await axios.get("/api/suppliers");
+        const response = await axios.get(`${url}/api/suppliers`);
         setSuppliers(response.data);
       } catch (error) {
         console.error("Error fetching suppliers:", error);
@@ -51,7 +51,7 @@ const AddInventory = ({ fetchInventory }) => {
     }
 
     try {
-      await axios.post("/api/inventory", formData, {
+      await axios.post(`${url}/api/inventory`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
