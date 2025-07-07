@@ -14,7 +14,7 @@ import {
   MostCommonCategoryCard,
 } from "../components/orders/OrderSummaryCard";
 import "./orders.css";
-
+const url="https://inventory-2edn.onrender.com"
 const OrdersManagement = () => {
   const [orders, setOrders] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -30,7 +30,7 @@ const OrdersManagement = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("/api/orders");
+      const response = await axios.get(`${url}/api/orders`);
       setOrders(response.data);
       setLoading(false);
     } catch (error) {
