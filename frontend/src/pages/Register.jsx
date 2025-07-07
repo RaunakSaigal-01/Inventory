@@ -41,7 +41,7 @@ form.append("password", formData.password);
     if (avatar) form.append("avatar", avatar);
 
     try {
-      const { data } = await axios.post("/api/register", form, {
+      const { data } = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/register`, form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 toast.success(data.message);
