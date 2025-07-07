@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import logining from "../assets/authimg.png";
 import "./login.css";
-
+const url="https://inventory-2edn.onrender.com"
 const Login = ({ setIsLoggedIn, setUsername, setIsAdmin }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ toast.error("Email and password are required!");
       return;
     }
     try {
-      const { data } = await axios.post("/api/login", formData);
+      const { data } = await axios.post(`${url}/api/login`, formData);
       const decodedToken = JSON.parse(atob(data.token.split(".")[1]));
 setIsLoggedIn(true);
 setUsername(decodedToken.username);
