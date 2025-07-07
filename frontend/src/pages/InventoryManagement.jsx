@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./inventory.css";
-
+const url="https://inventory-2edn.onrender.com"
 const InventoryManagement = () => {
   const [inventory, setInventory] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -18,7 +18,7 @@ fetchInventory();
 
   const fetchInventory = async () => {
     try {
-      const response = await axios.get("/api/inventory");
+      const response = await axios.get(`${url}/api/inventory`);
 setInventory(response.data);
     } catch (error) {
 console.error("Error fetching inventory:", error);
