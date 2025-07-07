@@ -12,7 +12,7 @@ const AddSupplier = ({ fetchSuppliers }) => {
     takesReturns: false,
     email: "",
   });
-
+const url="https://inventory-2edn.onrender.com"
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
@@ -43,7 +43,7 @@ const AddSupplier = ({ fetchSuppliers }) => {
     });
 
     try {
-      await axios.post("/api/suppliers", formData, {
+      await axios.post(`${url}/api/suppliers`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Supplier added successfully!");
