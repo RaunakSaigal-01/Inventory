@@ -9,7 +9,7 @@ import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { ClipLoader } from "react-spinners";
 import "./supplier.css";
-
+const url="https://inventory-2edn.onrender.com"
 const SupplierManagement = () => {
   const [suppliers, setSuppliers] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -24,7 +24,7 @@ fetchSuppliers();
 
   const fetchSuppliers = async () => {
     try {
-      const response = await axios.get("/api/suppliers");
+      const response = await axios.get(`${url}/api/suppliers`);
 setSuppliers(response.data);
 setLoading(false);
     } catch (error) {
@@ -50,7 +50,7 @@ setEditSupplier(null);
 
   const handleDeleteSupplier = async (id) => {
     try {
-      await axios.delete(`/api/suppliers/${id}`);
+      await axios.delete(`${url}/api/suppliers/${id}`);
 setSuppliers(suppliers.filter((supplier) =>supplier._id !== id));
 toast.success("Supplier deleted successfully!");
     } catch (error) {
