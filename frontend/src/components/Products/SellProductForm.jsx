@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+const url="https://inventory-2edn.onrender.com"
 const SellProductForm = ({ selectedProduct, setMessage }) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -12,7 +12,7 @@ const SellProductForm = ({ selectedProduct, setMessage }) => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.post("/api/sell", {
+      const response = await axios.post(`${url}/api/sell`, {
         productId: selectedProduct._id,
         quantity,
       }, {
