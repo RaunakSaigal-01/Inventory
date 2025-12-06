@@ -99,13 +99,21 @@ const registerUser = async (req, res) => {
       otp, // Save OTP
       otpExpiry, // Save OTP expiry time
     });
-    await newUser.save();
-    
+     await newUser.save();
+    console.log("✅ User saved, now sending OTP email...");
+
     await sendMail(email, body, "Welcome to Inventory Management System");
-    res.status(201).json({ message: "User registered successfully. Please check your email for the OTP." });
+
+    console.log("✅ sendMail finished (check logs above for success/error)");
+
+    return res.status(201).json({
+      message: "User registered successfully. Please check your email for the OTP.",
+    });
   } catch (error) {
     console.error("Error with registration:", error);
-    res.status(500).json({ message: "Server error. Please try again later." });
+    return res
+      .status(500)
+      .json({ message: "Server error. Please try again later." });
   }
 };
 
